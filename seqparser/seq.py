@@ -55,8 +55,11 @@ def reverse_transcribe(seq: str) -> str:
                                   + "."
                                   )
 
+# testing function ... 
+#print(transcribe("ATACGC")) 
+#print(transcribe("ATACGC", reverse=True))
+#transcribe("AZFC")
 
-print(transcribe("ATACGC")) 
-print(transcribe("ATACGC", reverse=True))
-
-transcribe("AZFC")
+#transcribe(".ATACGC")
+#transcribe("XYDz")
+#transcribe(" ")
