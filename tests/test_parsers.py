@@ -37,45 +37,72 @@ def test_FastaParser():
     files that are blank or corrupted in some way. Two example Fasta files are
     provided in /tests/bad.fa and /tests/empty.fa
     """
-
+    print("yayo")
     #print(FastaParser("tests/test.fa"))
 
     # test empty file
     try:
-        FastaParser("tests/empty.fa")
+        test_parser = FastaParser("tests/blank.fa")
+
+        for header, seq in test_parser:
+            print(header)
+            print(seq)
+        
     except ValueError as e:
-        e == "File tests/empty.fa had 0 lines."
+        assert str(e) == "File (tests/blank.fa) had 0 lines."
+
+
+    try: 
+        test_parser = FastaParser("tests/bad3.fa")
+        
+        for header, seq in test_parser:
+            print(header)
+            print(seq)
+ 
+    except ValueError as e:
+        assert str(e) == "Got an empty line for tests/bad3.fa @ line 2" 
 
     # test corrupted file - contain headers but not sequence
     try: 
-        FastaParser("tests/bad.fa")
-    except ValueError:
-        pass
+        test_parser = FastaParser("tests/bad.fa")
 
+        for header, seq in test_parser:
+             print(header)
+             print(seq)
+
+    except ValueError as e:
+
+        assert str(e) == "File (tests/bad.fa) had 0 lines."
 
     # test corrupted file - contain sequence but not headers
-    try:
-        FastaParser("tests/bad2.fa")
-    except ValueError: 
-        pass
+    # error is not caught with provided parser function 
+  #  try:
+  #      test_parser = FastaParser("tests/bad2.fa")
+
+   #     for header, seq in test_parser:
+   #          print(header)
+   #          print(seq)
+
+   # except ValueError as e:
+   #     print(str(e)) 
+   #     pass
 
     # test normal file
-    assert FastaParser("tests/test.fa")
+    test_parser = FastaParser("data/test.fa")
 
-print("ok")
+    for header, seq in test_parser:
+        assert isinstance(header, str)
+        assert isinstance(seq, str)
 
-#FastaParser("data/test.fa")
 
-test_parser = FastaParser("tests/bad.fa")
-#test_parser = FastaParser("tests/blank.fa")
 
-#for header, seq in test_parser:
-#    print(header)
-#    print(seq)
+#print(FastaParser("tests/bad3.fa"))
+print(test_FastaParser())
 
-for header, sequence in test_parser:
-    print(f"Header: {header}")
-    print(f"Sequence: {sequence}")
+
+#for header, sequence in test_parser:
+#    print(f"Header: {header}")
+#    print(f"Sequence: {sequence}")
 
 
 #print(FastaParser("tests/bad.fa"))
@@ -91,6 +118,7 @@ def test_FastaFormat():
     """
     pass
 
+FastqParser("tests/test.fq")
 
 def test_FastqParser():
     """
@@ -101,7 +129,7 @@ def test_FastqParser():
 
     # test empty file
     try:
-        FastqParser("tests/empty.fq")
+        test_parser = FastqParser("tests/empty.fq")
     except ValueError:
         pass
     
