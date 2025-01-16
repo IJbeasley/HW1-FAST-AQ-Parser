@@ -19,9 +19,15 @@ classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 dependencies = [
     "pytest",
-	"io",
-	"typing" 
+#	"io",
+#	"sys"
+#	"typing" 
 ]
 
+[tool.flit.metadata]
+module = "seqparser"
+description-file = "DESCRIPTION.txt" 
+
 [project.urls]
-Home = "https://github.com/BMI203-2024/HW1-FAST-AQ-Parser.git"
+# Home = "https://github.com/BMI203-2024/HW1-FAST-AQ-Parser.git"
+Home = "https://github.com/IJbeasley/HW1-FAST-AQ-Parser"
