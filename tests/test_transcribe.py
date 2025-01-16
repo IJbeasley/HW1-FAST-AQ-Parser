@@ -1,5 +1,10 @@
 # write tests for transcribe functions
 
+# add current working directory to python path
+# to load seqparser module
+import sys
+sys.path.append(".")
+
 from seqparser import (
         transcribe,
         reverse_transcribe)
@@ -11,7 +16,6 @@ def test_freebie_transcribe_1():
     DO NOT MODIFY THIS FUNCTION
     """
     assert True
-
 
 def test_freebie_transcribe_2():
     """
@@ -57,5 +61,5 @@ def test_reverse_transcribe():
         reverse_transcribe("AZFC")
     except ValueError as e:
         assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G']."
-        
+
     pass
