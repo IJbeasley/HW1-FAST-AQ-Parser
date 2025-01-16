@@ -61,5 +61,3 @@ def test_reverse_transcribe():
         reverse_transcribe("AZFC")
     except ValueError as e:
         assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G']."
-
-    pass
