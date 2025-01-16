@@ -9,8 +9,7 @@ from seqparser import (
         FastaParser,
         FastqParser)
 
-import pytest
-
+#import pytest
 
 def test_freebie_parser_1():
     """
@@ -39,11 +38,51 @@ def test_FastaParser():
     provided in /tests/bad.fa and /tests/empty.fa
     """
 
-    print(FastaParser("tests/test.fa"))
-    pass
+    #print(FastaParser("tests/test.fa"))
+
+    # test empty file
+    try:
+        FastaParser("tests/empty.fa")
+    except ValueError as e:
+        e == "File tests/empty.fa had 0 lines."
+
+    # test corrupted file - contain headers but not sequence
+    try: 
+        FastaParser("tests/bad.fa")
+    except ValueError:
+        pass
 
 
-test_FastaParser()
+    # test corrupted file - contain sequence but not headers
+    try:
+        FastaParser("tests/bad2.fa")
+    except ValueError: 
+        pass
+
+    # test normal file
+    assert FastaParser("tests/test.fa")
+
+print("ok")
+
+#FastaParser("data/test.fa")
+
+test_parser = FastaParser("tests/bad.fa")
+#test_parser = FastaParser("tests/blank.fa")
+
+#for header, seq in test_parser:
+#    print(header)
+#    print(seq)
+
+for header, sequence in test_parser:
+    print(f"Header: {header}")
+    print(f"Sequence: {sequence}")
+
+
+#print(FastaParser("tests/bad.fa"))
+
+#FastaParser("tests/test.fa")._get_record()
+#test_FastaParser()
+
 
 def test_FastaFormat():
     """
@@ -59,7 +98,26 @@ def test_FastqParser():
     an instance of your FastqParser class and assert that it properly reads 
     in the example Fastq File.
     """
-    pass
+
+    # test empty file
+    try:
+        FastqParser("tests/empty.fq")
+    except ValueError:
+        pass
+    
+    # test corrupted file - contain headers but not sequence
+    try:
+        FastqParser("tests/bad.fq")
+    except ValueError:
+        pass
+   
+   # test corrupted file - contain sequence but not headers
+    try:
+        FastqParser("tests/bad2.fq")
+    except ValueError:
+        pass
+    
+
 
 def test_FastqFormat():
     """
