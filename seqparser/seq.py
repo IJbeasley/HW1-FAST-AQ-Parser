@@ -43,6 +43,8 @@ def reverse_transcribe(seq: str) -> str:
         Args:
     seq (str): The DNA sequence to transcribe (e.g. ATACGC).
     """
+    seq = seq.upper()
+    
     # check that all characters in the input sequence are valid
     if all(nuc in ALLOWED_NUC for nuc in seq):
         transcribed_seq =  ''.join(TRANSCRIPTION_MAPPING[nuc] for nuc in seq)[::-1]
