@@ -18,12 +18,12 @@ jobs:
       
       - name: Install pipenv
         run: |
-           python -m pip install --upgrade pipenv wheel
-
-        - name: Install dependencies
-           if: steps.cache-pipenv.outputs.cache-hit != 'true'
-                run: |
-                   pipenv install --deploy --dev
+             python -m pip install --upgrade pipenv wheel
+  
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: |
+          pipenv install --deploy --dev
 
       - name: Install package
         run: |
