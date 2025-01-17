@@ -100,7 +100,7 @@ def test_incorrect_fastaparser():
              print(seq)
 
         assert False, "Empty sequence lines should have raised an error"
-        
+
     except ValueError as e:
 
         assert str(e) == "File (tests/bad.fa) had 0 lines."
@@ -121,20 +121,17 @@ def test_incorrect_fastaparser():
    #     print(str(e)) 
    #     pass
 
-
-test_incorrect_fastaparser()
-
 def test_FastaFormat():
     """
     Test to make sure that a fasta file is being read in if a fastq file is
     read, the first item is None
     """
 
-    # test fastq file
-    try:
-        FastaParser("tests/test.fq")
-    except ValueError:
-        pass
+    # test first line of fastq file is None, if parsed as fasta
+    test_parser = FastaParser("data/test.fq")
+    first_line = list(test_parser)[0]
+    assert first_line[0] is None
+
 
 def test_FastqParser():
     """
@@ -142,42 +139,54 @@ def test_FastqParser():
     an instance of your FastqParser class and assert that it properly reads 
     in the example Fastq File.
     """
+    # test - properly reads in normal file
+    # test.fq
+    test_parser = FastqParser("data/test.fq")
 
-    # test empty file
+    for header, seq, qual in test_parser:
+        assert isinstance(header, str)
+        assert isinstance(seq, str)
+        assert isinstance(qual, str)
+
+    # test  - does parser correctly fail on empty file
+    # blank.fq
     try:
-        test_parser = FastqParser("tests/empty.fq")
+        test_parser = FastqParser("tests/blank.fq")
+
+        for header, seq, qual in test_parser:
+            assert isinstance(header, str)
+            assert isinstance(seq, str)
+            assert isinstance(qual, str)
+
+        assert False, "Empty file should have raised an error"
+
     except ValueError:
-        print("caught error x1")
         pass
     
-    # test corrupted file - contain headers but not sequence
+    # test - does parser correctly fail on corrupted file - contain headers but not sequence
+    # bad.fq
     try:
-        FastqParser("tests/bad.fq")
+        test_parser = FastqParser("tests/bad.fq")
+
+        for header, seq, qual in test_parser:
+            assert isinstance(header, str)
+            assert isinstance(seq, str)
+            assert isinstance(qual, str)
+
+        assert False, "Empty sequence lines should have raised an error"
+
     except ValueError:
-        print("caught error x2")
         pass
    
-   # test corrupted file - contain sequence but not headers
-    try:
-        FastqParser("tests/bad2.fq")
-    except ValueError:
-        print("caught error x3")
-        pass
-    
-print(FastqParser("tests/test.fq"))
-print(test_FastqParser())
-
 
 def test_FastqFormat():
     """
     Test to make sure fastq file is being read in. If this is a fasta file, the
     first line is None
     """
-    # test fasta file
-    try:
-        FastqParser("tests/test.fa")
-    except ValueError:
-        pass
+    # test first line is None if fasta file is parsed as fastq
+    test_parser = FastqParser("data/test.fa")
+    first_line = list(test_parser)[0]
+    assert first_line[0] is None
 
 
-    pass
