@@ -39,9 +39,12 @@ def test_transcribe():
     assert transcribe(seq.lower(), reverse=False) == "UAUGCG"
     assert transcribe(seq.lower(), reverse=True) == "GCGTAT"
 
-    # test for invalid nucleotide
+    # test - is an error raised for invalid nucleotide
     try:
         transcribe("AZFC")
+        
+        assert False, "Invalid nucleotide sequence should raise an error"
+
     except ValueError as e:
         assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G']."
 
@@ -50,14 +53,20 @@ def test_reverse_transcribe():
     """
     Write your unit test for the reverse transcribe function here.
     """
+    
+    seq = "ATACGC"
 
+   # test normal sequence
     assert reverse_transcribe("UAUGCG") == "GCGTAT"
 
-    # lower case test
+    # test normal lower case sequence
     assert reverse_transcribe("uaugcg") == "GCGTAT"
 
-    # test for invalid nucleotide
+    # test - is an error raised  for invalid nucleotide
     try:
         reverse_transcribe("AZFC")
+
+        assert False, "Invalid nucleotide sequence should raise an error"
+
     except ValueError as e:
         assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G']."
