@@ -56,7 +56,7 @@ def test_reverse_transcribe():
 
     seq = "ATACGC"
 
-   # test normal sequence
+   # test - does the reverse_transcribe behave correctly for a normal sequence (seq)
     assert reverse_transcribe(seq) == "GCGUAU"
 
     # test normal lower case sequence
@@ -70,4 +70,6 @@ def test_reverse_transcribe():
 
     except ValueError as e:
         assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G']."
+
+
 
