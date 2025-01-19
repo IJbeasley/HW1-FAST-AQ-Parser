@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8e1fa4cebfb362d534adf1f4e4dbd8e9fa3332fd94ae9f4df6e5e2ccc61ffa2d"
+            "sha256": "5f61ec08e3a83641f50045a5d62d2977048aa9717e91936a417d63ff6e586d87"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,12 @@
         ]
     },
     "default": {
+        "docopt": {
+            "hashes": [
+                "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"
+            ],
+            "version": "==0.6.2"
+        },
         "exceptiongroup": {
             "hashes": [
                 "sha256:3111b9d131c238bec2f8f516e123e14ba243563fb135d3fe885990585aa7795b",
@@ -56,6 +62,14 @@
             "index": "pypi",
             "markers": "python_version >= '3.8'",
             "version": "==8.3.4"
+        },
+        "seqparser": {
+            "hashes": [
+                "sha256:58811846bc89c387c2553cc2ce923410af9bc64e70ca2adbee0f7b0532e83204",
+                "sha256:caecabab53ad4dea6ac200cdcf2f92b4e81e0fac3e6fa1a956acfac0b9554020"
+            ],
+            "index": "pypi",
+            "version": "==1.1.2"
         },
         "tomli": {
             "hashes": [
