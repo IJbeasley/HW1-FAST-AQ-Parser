@@ -9,7 +9,7 @@ from seqparser import (
         FastaParser,
         FastqParser)
 
-#import pytest
+import pytest
 
 def test_freebie_parser_1():
     """
@@ -37,32 +37,27 @@ def test_FastaParser():
     files that are blank or corrupted in some way. Two example Fasta files are
     provided in /tests/bad.fa and /tests/empty.fa
     """
-    # test normal file
+    # test - is 'normal' / example fasta file parsed correctly? 
+    # test.fa
     test_parser = FastaParser("data/test.fa")
 
+   # check that the parser is returning the correct data types
     for header, seq in test_parser:
         assert isinstance(header, str)
         assert isinstance(seq, str)
 
+    # check first seq is parsed correctly
+    seq0 = 'TGATTGAATCTTTTGAGGGTCACGGCCCGGAAGCCAGAATTTCGGGGTCCTCTGTGGATATTAATCGAGCCCACACGGTGTGAGTTCAGCGGCCCCCGCA'
+    assert test_parser[0][0] == "seq0"
+    assert test_parser[0][1] == seq0
 
-def test_incorrect_fastaparser():
+
+  # testing of edge cases - empty file, corrupted file
+  # does parser correctly fail? 
+def test_incorrect_FastaParser():
     """""
     Test of handling empty or corrupted fasta file
     """""
-
-    # testing of edge cases
-    try:
-        test_parser = FastaParser("tests/blank.fa")
-
-        for header, seq in test_parser:
-            print(header)
-            print(seq)
-
-        assert False, "Empty file should have raised an error"
-        
-    except ValueError as e:
-        assert str(e) == "File (tests/blank.fa) had 0 lines."
-
     # test empty file (blank.fa)
     try:
         test_parser = FastaParser("tests/blank.fa")
@@ -76,8 +71,8 @@ def test_incorrect_fastaparser():
     except ValueError as e:
         assert str(e) == "File (tests/blank.fa) had 0 lines."
 
-# test corrupted file - contain headers but sequence is blank lines
-# bad3.fa
+   # test corrupted file - contain headers but sequence is blank lines
+   # bad3.fa
     try: 
         test_parser = FastaParser("tests/bad3.fa")
         
@@ -90,8 +85,8 @@ def test_incorrect_fastaparser():
     except ValueError as e:
         assert str(e) == "Got an empty line for tests/bad3.fa @ line 2" 
 
-# test corrupted file - contain headers but not sequence (no blank lines)
-# bad.fa
+   # test corrupted file - contain headers but not sequence (no blank lines)
+   # bad.fa
     try: 
         test_parser = FastaParser("tests/bad.fa")
 
@@ -105,10 +100,10 @@ def test_incorrect_fastaparser():
 
         assert str(e) == "File (tests/bad.fa) had 0 lines."
 
- # test corrupted file - contain sequence but not headers
- # bad2.fa
-# ... but this error is not caught with the provided parser class
- # so I've commented out this test
+   # test corrupted file - contain sequence but not headers
+   # bad2.fa
+   # ... but this error is not caught with the provided parser class
+   # so I've commented out this test
 
   #  try:
   #      test_parser = FastaParser("tests/bad2.fa")
@@ -127,12 +122,12 @@ def test_FastaFormat():
     read, the first item is None
     """
 
-    # test first line of fastq file is None, if parsed as fasta
+    # test - first line of fastq file is None, if parsed as fasta
     test_parser = FastaParser("data/test.fq")
     first_line = list(test_parser)[0]
     assert first_line[0] is None
 
-
+# does FastqParser correctly read in a fastq file
 def test_FastqParser():
     """
     Write your unit test for your FastqParser class here. You should generate
@@ -148,6 +143,15 @@ def test_FastqParser():
         assert isinstance(seq, str)
         assert isinstance(qual, str)
 
+    # check first seq is parsed correctly
+    seq0 = 'TGTGGTCGTATAGTTATTGTCATAAATTACACAGAATCGCGATTCTCCGCGTCCACCAATCTTAGTGCACCACAGCATCGACCCGATTTATGACGCTGAG'
+    qual0 = '*540($=*,=.062565,2>\'487\')!:&&6=,6,*7>:&132&83*8(58&59>\'8!;28<94,0*;*.94**:9+7"94(>7=\'(!5"2/!%"4#32='
+    assert test_parser[0][0] == "seq0"
+    assert test_parser[0][1] == seq0
+    assert test_parser[0][2] == qual0
+
+# does FastqPparser correctly fail on empty or corrupted file
+def test_incorrect_FastqParser():
     # test  - does parser correctly fail on empty file
     # blank.fq
     try:
