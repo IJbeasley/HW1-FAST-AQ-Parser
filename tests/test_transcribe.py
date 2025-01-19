@@ -53,8 +53,7 @@ def test_transcribe_invalid():
         assert False, "Invalid nucleotide sequence should raise an error"
 
     except ValueError as e:
-        assert str(e) == "Invalid nucleotide in sequence. Only allowed sequence values are: ['A', 'C', 'T', 'G'].", "Invalid nucleotide sequence should raise a different ValueError"
-
+        assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G'].", "Invalid nucleotide sequence should raise an different ValueError"
 
 def test_reverse_transcribe():
     """
