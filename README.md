@@ -16,21 +16,21 @@ The learning goals of this project are:
 ## Coding Assessment -- these are placeholders for what we might ask you to do
 We've provided for you a basic Fasta and Fastq parser (written out in the parse.py file) to allow parsing of a Fasta and Fastq file using an iterator. Please take a look at that script to familiarize yourself with the functions. 
 ### Assignment tasks
-- [ ] Write a Transcription Function (Write this code in the seq.py file). 
-- [ ] Write a Reverse Transcription Function (Write this code in the seq.py file). 
+- [x] Write a Transcription Function (Write this code in the seq.py file). 
+- [x] Write a Reverse Transcription Function (Write this code in the seq.py file). 
 
 ## Software Development Assessment 
-- [ ] Create a pip installable tool (only locally, do not submit to PyPI)
-	- [ ] Edit the `pyproject.toml` file to reflect author information
-	- [ ] Update the dependencies to include those that you use in your code
+- [x] Create a pip installable tool (only locally, do not submit to PyPI)
+	- [x] Edit the `pyproject.toml` file to reflect author information
+	- [x] Update the dependencies to include those that you use in your code
 
-- [  ] Write a unit test (in the test.py file) for
-	- [ ] Fasta Parser
-	- [ ] Fastq Parser
-	- [ ] Transcription
-	- [ ] Reverse Transcription
+- [x] Write a unit test (in the test.py file) for
+	- [x] Fasta Parser
+	- [x] Fastq Parser
+	- [x] Transcription
+	- [x] Reverse Transcription
 
-- [ ] Automate Testing with a [Github Actions](https://docs.github.com/en/actions)
+- [x] Automate Testing with a [Github Actions](https://docs.github.com/en/actions)
 
 	See blogposts below on helping set up github actions with pytest:
 	
@@ -38,8 +38,8 @@ We've provided for you a basic Fasta and Fastq parser (written out in the parse.
 	* [post 2](https://mattsegal.dev/pytest-on-github-actions.html)
 
 	Ensure that the github actions complete the following:
-	* pip installs tool
-	* runs pytest
+	* [x] pip installs tool
+	* [x] runs pytest
 	
 	You can also reference the [Minimal-Example](https://github.com/bmi203-2023/Minimal-Example).
 
