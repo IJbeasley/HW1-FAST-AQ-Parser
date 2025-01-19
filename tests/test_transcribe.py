@@ -5,6 +5,8 @@
 import sys
 sys.path.append(".")
 
+seq = "ATACGC"
+
 from seqparser import (
         transcribe,
         reverse_transcribe)
@@ -30,23 +32,28 @@ def test_transcribe():
     Write your unit test for the transcribe function here.
     """
 
-    seq = "ATACGC"
+    assert transcribe(seq, reverse=False) == "UAUGCG", "Normal sequence not transcribed correctly (by transcribe function)"	
+    assert transcribe(seq, reverse=True) == "GCGUAU", "Reverse sequence not transcribed correctly (by transcribe function)"	
 
-    assert transcribe(seq, reverse=False) == "UAUGCG"
-    assert transcribe(seq, reverse=True) == "GCGUAU"
+def test_transcribe_lower():
+    """
+    Test - does the transcribe function behave correctly for lower case sequences?
+    """
+    assert transcribe(seq.lower(), reverse=False) == "UAUGCG", "Normal lower case sequence not transcribed correctly (by transcribe function)"
+    assert transcribe(seq.lower(), reverse=True) == "GCGUAU", "Reverse lower case sequence not transcribed correctly (by transcribe function)"
 
-    # separate test for lower case - make into function later
-    assert transcribe(seq.lower(), reverse=False) == "UAUGCG"
-    assert transcribe(seq.lower(), reverse=True) == "GCGUAU"
+def test_transcribe_invalid():
+    """
+    Test - is an error raised for invalid nucleotides for the transcribe function?
+    """	
 
-    # test - is an error raised for invalid nucleotide
     try:
         transcribe("AZFC")
         
         assert False, "Invalid nucleotide sequence should raise an error"
 
     except ValueError as e:
-        assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G']."
+        assert str(e) == "Invalid nucleotide in sequence. Only allowed sequence values are: ['A', 'C', 'T', 'G'].", "Invalid nucleotide sequence should raise a different ValueError"
 
 
 def test_reverse_transcribe():
@@ -54,22 +61,29 @@ def test_reverse_transcribe():
     Write your unit test for the reverse transcribe function here.
     """
 
-    seq = "ATACGC"
-
    # test - does the reverse_transcribe behave correctly for a normal sequence (seq)
-    assert reverse_transcribe(seq) == "GCGUAU"
+    assert reverse_transcribe(seq) == "GCGUAU", "Normal sequence not reverse transcribed correctly (by reverse_transcribe function)"
 
+def test_reverse_transcribe_lower():
+    """
+    Test: does the reverse_transcribe function behave correctly for a lower case sequence? 
+    """
     # test normal lower case sequence
-    assert reverse_transcribe(seq.lower()) == "GCGUAU"
+    assert reverse_transcribe(seq.lower()) == "GCGUAU", "Normal lower case sequence not reverse transcribed correctly (by reverse_transcribe function)"	
 
-    # test - is an error raised  for invalid nucleotide
+
+def test_reverse_transcribe_invalid():
+    """
+    Test: is an error raised  for invalid nucleotide sequences for the reverse_transcribe function?
+    """	
+
     try:
         reverse_transcribe("AZFC")
 
         assert False, "Invalid nucleotide sequence should raise an error"
 
     except ValueError as e:
-        assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G']."
+        assert str(e) == "Invalid nucleotide in sequence. \nOnly allowed sequence values are: ['A', 'C', 'T', 'G'].", "Invalid nucleotide sequence should raise an different ValueError"	
 
 
 
