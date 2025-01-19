@@ -55,7 +55,7 @@ def test_FastaParser():
 
   # testing of edge cases - empty file, corrupted file
   # does parser correctly fail? 
-def test_incorrect_FastaParser():
+def test_empty_FastaParser():
     """""
     Test of handling empty or corrupted fasta file
     """""
@@ -72,6 +72,7 @@ def test_incorrect_FastaParser():
     except ValueError as e:
         assert str(e) == "File (tests/blank.fa) had 0 lines."
 
+def test_corrupted_FastaParser():
    # test corrupted file - contain headers but sequence is blank lines
    # bad3.fa
     try: 
@@ -152,8 +153,8 @@ def test_FastqParser():
     assert first_line[1] == seq0
     assert first_line[2] == qual0
 
-# does FastqPparser correctly fail on empty or corrupted file
-def test_incorrect_FastqParser():
+# does FastqPparser correctly fail on empty or corrupted file?
+def test_empty_FastqParser():
     # test  - does parser correctly fail on empty file
     # blank.fq
     try:
@@ -168,8 +169,9 @@ def test_incorrect_FastqParser():
 
     except ValueError:
         pass
-    
-    # test - does parser correctly fail on corrupted file - contain headers but not sequence
+
+def test_corrupt_FastqParser():    
+    # test - does parser correctly fail on corrupted file? - contain headers but not sequence
     # bad.fq
     try:
         test_parser = FastqParser("tests/bad.fq")
