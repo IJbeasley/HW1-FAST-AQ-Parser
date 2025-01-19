@@ -43,7 +43,7 @@ We've provided for you a basic Fasta and Fastq parser (written out in the parse.
 	
 	You can also reference the [Minimal-Example](https://github.com/bmi203-2023/Minimal-Example).
 
-![](https://github.com/hchen725/HW1-FAST-AQ-Parser/workflows/Project%20Tests/badge.svg)
+![](https://github.com/IJbeasley/HW1-FAST-AQ-Parser/workflows/Project%20Tests/badge.svg)
 
 # Getting Started
 To get started you will need to fork this repository onto your own github. You will then work on the code base from your own repo and make changes to it in the form of commits. 
