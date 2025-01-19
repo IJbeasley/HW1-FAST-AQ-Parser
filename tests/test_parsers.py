@@ -48,8 +48,9 @@ def test_FastaParser():
 
     # check first seq is parsed correctly
     seq0 = 'TGATTGAATCTTTTGAGGGTCACGGCCCGGAAGCCAGAATTTCGGGGTCCTCTGTGGATATTAATCGAGCCCACACGGTGTGAGTTCAGCGGCCCCCGCA'
-    assert test_parser[0][0] == "seq0"
-    assert test_parser[0][1] == seq0
+    first_line = list(test_parser)[0]
+    assert first_line[0] == "seq0"
+    assert first_line[1] == seq0
 
 
   # testing of edge cases - empty file, corrupted file
@@ -146,9 +147,10 @@ def test_FastqParser():
     # check first seq is parsed correctly
     seq0 = 'TGTGGTCGTATAGTTATTGTCATAAATTACACAGAATCGCGATTCTCCGCGTCCACCAATCTTAGTGCACCACAGCATCGACCCGATTTATGACGCTGAG'
     qual0 = '*540($=*,=.062565,2>\'487\')!:&&6=,6,*7>:&132&83*8(58&59>\'8!;28<94,0*;*.94**:9+7"94(>7=\'(!5"2/!%"4#32='
-    assert test_parser[0][0] == "seq0"
-    assert test_parser[0][1] == seq0
-    assert test_parser[0][2] == qual0
+    first_line = list(test_parser)[0]
+    assert first_line[0] == "seq0"
+    assert first_line[1] == seq0
+    assert first_line[2] == qual0
 
 # does FastqPparser correctly fail on empty or corrupted file
 def test_incorrect_FastqParser():
