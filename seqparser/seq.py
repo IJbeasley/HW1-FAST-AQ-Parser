@@ -56,12 +56,3 @@ def reverse_transcribe(seq: str) -> str:
                                   + str(list(ALLOWED_NUC))
                                   + "."
                                   )
-
-# testing function ... 
-#print(transcribe("ATACGC")) 
-#print(transcribe("ATACGC", reverse=True))
-#transcribe("AZFC")
-
-#transcribe(".ATACGC")
-#transcribe("XYDz")
-#transcribe(" ")
